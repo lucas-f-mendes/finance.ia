@@ -1,0 +1,28 @@
+version: '3.8'
+
+services:
+  app:
+    image: finance_ai:development
+    build: .
+    command: [sh, -c, "npm i && npm run dev"]
+    depends_on:
+      - postgres
+    ports:
+      - 3000:3000
+    volumes:
+      - .:/app
+
+  postgres:
+    image: postgres:12
+    restart: always
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_DB: finance_dev
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+  
+volumes:
+  pgdata: {}
