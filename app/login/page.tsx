@@ -1,9 +1,16 @@
 import { Button } from "@/components/ui/button";
+import { SignInButton } from "@clerk/nextjs";
+import { auth } from "@clerk/nextjs/server";
 import { LogInIcon } from "lucide-react";
 import Image from "next/image";
+import { redirect } from "next/navigation";
 
 
-const LoginPage = () => {
+const LoginPage = async () => {
+  const { userId } = await auth();
+
+  if (userId) redirect("/");
+
   return (
     <div className="h-full grid grid-cols-2">
       <div className="mx-auto flex flex-col max-w-[550px] h-full justify-center p-8">
@@ -23,10 +30,12 @@ const LoginPage = () => {
           facilitando o controle do seu orçamento.
         </p>
 
-        <Button variant="outline">
-          <LogInIcon className="mr-2" />
-          Fazer login
-        </Button>
+        <SignInButton>
+          <Button variant="outline">
+            <LogInIcon className="mr-2" />
+            Fazer login
+          </Button>
+        </SignInButton>
       </div>
 
       <div className="relative h-full w-full">
