@@ -12,6 +12,7 @@ model Transaction {
   name          String
   type          TransactionType
   amount        Decimal                  @db.Decimal(10, 2)
+  userId        String
   category      TransactionCategory
   paymentMethod TransactionPaymentMethod
   date          DateTime
