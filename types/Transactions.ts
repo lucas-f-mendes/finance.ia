@@ -40,3 +40,25 @@ export interface TransactionCategoryOptionsInterface {
   value: TransactionCategory,
   label: string
 };
+
+export interface UpsertTransactionInterface {
+  id?: number,
+  name: string
+  amount: number
+  type: TransactionType
+  category: TransactionCategory
+  paymentMethod: TransactionPaymentMethod
+  date: Date
+}
+
+export interface UpsertTransactionDialogInterface {
+  isOpen: boolean,
+  setIsOpen: (isOpen: boolean) => void,
+  defaultValues?: any
+  transactionId?: number
+}
+
+
+export interface EditTransactionButtonInterface {
+  transaction: Transaction
+}
