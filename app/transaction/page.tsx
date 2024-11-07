@@ -1,8 +1,7 @@
-import { Button } from "@/components/ui/button";
 import { DataTable } from "@/components/ui/data-table";
-import { ArrowUpDownIcon } from "lucide-react";
 import { transactionColumns } from "./_columns";
 import { db } from "@/lib/prisma";
+import AddTransactionButton from "@/components/add-transaction-button";
 
 const TransactionPage = async () => {
   const transactions = await db.transaction.findMany({});
@@ -14,10 +13,7 @@ const TransactionPage = async () => {
           Transações
         </h1>
 
-        <Button className="rounded-full font-bold">
-          Adicionar transação
-          <ArrowUpDownIcon />
-        </Button>
+        <AddTransactionButton />
       </div>
 
       <DataTable columns={transactionColumns} data={transactions} />
